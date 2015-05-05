@@ -1,2 +1,2 @@
-# pendulo
+# Pendulo
 movimiento pendulos
