@@ -9,6 +9,8 @@ var PxPorCm = 10,
 		x = 200,
 		y = 0,
 		dt = 0.005,
+		c =0,
+		k = -0.1,
 		t = 0,
 		l = 0.3, // metros longitud de pendulo
 		g = 9.8; // gravity m/s2x
@@ -72,7 +74,9 @@ window.onload = function() {
 
 	setInterval(function () {
 		t = t + dt;
-		atg = g * Math.sin(alfa); // aceleracion tangengial m / s2
+		// reduccion del movimiento por friccion 
+		c = c++;
+		atg = g * Math.sin(alfa) + k * vtg; // aceleracion tangengial m / s2
 		vtg = vtg + atg * dt;
 		DArc = vtg * dt;
 		Dalfa = DArc / l; 
