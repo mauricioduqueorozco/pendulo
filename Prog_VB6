@@ -1,0 +1,100 @@
+Dim PxPorCm As Double 'Escala grafica'
+Dim pi As Double
+Dim X0 As Double 'coord. pinto fijo'
+Dim Y0 As Double 'coord punto fijo'
+Dim alfa0 As Double ' Angulo inicial'
+Dim alfa As Double 'angulo para cualquier tiempo
+Dim x As Double ' localicazacion para cualquier tiempo
+Dim y As Double
+Dim t As Double ' tiempo de simulaicon
+Dim g As Double 'gravedad'
+Dim L As Double ' Longitud del pendulo'
+Dim dt As Double 'intervalo de tiempos'
+Dim X1 As Double
+Dim Y1 As Double
+Dim Vtg As Double
+
+Private Sub Form_Click()
+    t = t + dt ' puede estar al principio o la final
+    c = c + 1
+    K = -0.1
+    
+    atg = g * Sin(alfa) + K * Vtg 'aceleracion tangencial [m/s^2]'
+    Vtg = Vtg + atg * dt
+    Darc = Vtg * dt 'arco que va a correr en ese dif. de tiempo'
+    Dalfa = Darc / L
+    alfa = alfa - Dalfa
+    X1 = X0 + L * 100 * PxPorCm * Sin(alfa)
+    Y1 = Y0 + L * 100 * PxPorCm * Cos(alfa)
+    If c / 40 = Int(c / 40) Then
+        Caption = Round(t, 2) & "     " & Round(alfa / pi * 180, 2)
+    End If
+    graficar
+End Sub
+Private Sub Check1_Click()
+    EscV = 100
+    X2 = X1 - Vtg * EscV * Cos(alfa)
+    Y2 = Y1 + Vtg * EscV * Sin(alfa)
+    Line (X1, Y1)-(X2, Y2), RGB(255, 255, 0)
+End Sub
+Private Sub Check2_Click()
+    EscF = 12
+    X2 = X1
+    Y2 = Y1 + g * EscF
+    Line (X1, Y2)-(X2, Y2), RGB(255, 0, 0)
+End Sub
+Private Sub Check3_Click()
+    EscF = 12
+    X2 = X1 + g * EscF * Cos(alfa) * Sin(alfa)
+    Y2 = Y1 + g * EscF * Cos(alfa) * Cos(alfa)
+    Line (X1, Y1)-(X2, Y2), RGB(255, 0, 0)
+End Sub
+Private Sub Check4_Click()
+    EscF = 7
+    X2 = X1 + g * EscF * Cos(alfa) * Sin(alfa)
+    Y2 = Y1 + g * EscF * Cos(alfa) * Cos(alfa)
+    DrawWidth = 1
+    Line (X1, Y1)-(X2, Y2), RGB(0, 0, 255)
+    X3 = X1
+    Y3 = Y1 + g * EscF
+    Line (X3, Y3)-(X2, Y2), RGB(0, 0, 255)
+    DrawWidth = 3
+End Sub
+Private Sub Check5_Click()
+    If Check5 Then
+    Timer1.Interval = 0
+    Else
+    Timer1.Interval = 1
+    End If
+End Sub
+
+
+Private Sub Form_Load()
+    PxPorCm = 10
+    pi = 3.141592653596
+    g = 9.8 'm/s^2'
+    L = 0.3 'm'
+    dt = 0.005 's
+    alfa0 = 30 * pi / 180 'rad
+    X0 = 200
+    Y0 = 50
+    X1 = X0 + L * 100 * PxPorCm * Sin(alfa0)
+    Y1 = Y1 + L * 100 * PxPorCm * Cos(alfa0)
+    alfa = alfa0
+    Vtg = 0
+graficar
+End Sub
+Sub graficar()
+    Cls
+    Line (X0, Y0)-(X1, Y1), RGB(120, 120, 200)
+    Circle (X1, Y1), 10, RGB(200, 120, 120)
+    If Check1 Then Check1_Click
+    If Check2 Then Check2_Click
+    If Check3 Then Check3_Click
+    If Check4 Then Check4_Click
+    If Check5 Then Check5_Click
+End Sub
+
+Private Sub Timer1_Timer()
+    Form_Click
+End Sub
