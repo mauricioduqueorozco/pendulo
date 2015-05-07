@@ -75,7 +75,7 @@ window.onload = function() {
 	setInterval(function () {
 		t = t + dt;
 		// reduccion del movimiento por friccion 
-		c = c++;
+		
 		atg = g * Math.sin(alfa) + k * vtg; // aceleracion tangengial m / s2
 		vtg = vtg + atg * dt;
 		DArc = vtg * dt;
