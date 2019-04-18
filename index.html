@@ -13,18 +13,53 @@
 		<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js" integrity="sha256-/PFxCnsMh+nTuM0k3VJCRch1gwnCfKjaP8rJNq5SoBg= sha384-9ksAFjQjZnpqt6VtpjMjlp2S0qrGbcwF/rvrLUg2vciMhwc1UJJeAAOLuJ96w+Nj sha512-UMSn6RHqqJeJcIfV1eS2tPKCjzaHkU/KqgAnQ7Nzn0mLicFxaVhm9vq7zG5+0LALt15j1ljlg8Fp9PT1VGNmDw==" crossorigin="anonymous"></script>
 
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
-		<script type="text/javascript" src='server.js'></script>
-		<script type="text/javascript" src='line.js'></script>
   </head>
   <body>
     <h1>Pendular!</h1>
-		<div class="grid-x">
-		  <div class="cell small-6" id="canvasElement"></div>
-			<div class="cell small-6">
-				<p id="p1"></p>
+		<div class="grid-x grid-margin-x">
+			<div class="cell small-1"></div>
+		  <div class="cell small-7" id="canvasElement"></div>
+			<div class="cell small-4">
+				<!-- <div id="app-5">
+					<p>{{ message }}</p>
+					<a class="button" v-on:click="reverseMessage">движение маятника</a>
+					<button v-on:click="reverseMessage">Reverse Message</button>
+				</div> -->
+				<div class="grid-x">
+					<div class="cell">
+						<label>
+						  Gravity
+						  <input type="number" value="9.8">
+						</label>
+					</div>
+					<div class="cell">
+						<label>
+							Mass on Kilo
+							<input type="number" value="0.1">
+						</label>
+					</div>
+					<div class="cell">
+						<label>
+							Initial angle
+							<input type="number" value="60">
+						</label>
+					</div>
+				  <div class="cell">
+						<p id="angle_time"></p>
+						<p id="force_x"></p>
+						<p id="force_y"></p>
+						<p id="tension"></p>
+						<p id="time"></p>
+					</div>
+				  <div class="cell">
+						<input type="range" min="1" max="100" step="1">
+					</div>
+				</div>
 			</div>
 		</div>
 
+		<script type="text/javascript" src='server.js'></script>
+		<script type="text/javascript" src='line.js'></script>
+		<script type="text/javascript" src='container.js'></script>
   </body>
 </html>
