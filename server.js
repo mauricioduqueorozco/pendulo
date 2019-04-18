@@ -15,8 +15,7 @@ var PxPorCm = 50,
 		long_cuerda = 300, // metros longitud de pendulo
 		g = 9.8, // gravity m/s2x
 		mass = 0.1,
-		f1 = 0,
-		f2 = 0;
+		sample_time = 1; // Senconds
 
 
 
@@ -100,7 +99,7 @@ window.onload = function() {
 		init(alfa)
 		// init()
 
-	}, 100);
+	}, sample_time);
 
 
 };
