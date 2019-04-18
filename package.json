@@ -1,0 +1,27 @@
+{
+  "name": "pendulo",
+  "version": "0.0.1",
+  "description": "This is a simple simulation of pendular movement",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauricioduqueorozco/pendulo.git"
+  },
+  "keywords": [
+    "pendular",
+    "javascript"
+  ],
+  "author": "mauricio duque mauricio.duque.eje@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mauricioduqueorozco/pendulo/issues"
+  },
+  "homepage": "https://github.com/mauricioduqueorozco/pendulo#readme",
+  "dependencies": {
+    "foundation-sites": "^6.5.3"
+  }
+}

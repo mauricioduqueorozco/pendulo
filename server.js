@@ -17,15 +17,16 @@ var PxPorCm = 50,
 		mass = 0.1,
 		sample_time = 1; // Senconds
 
-
-
 window.onload = function() {
-  document.body.style.background = "#f3f3f3";
+	var canvasElement = document.getElementById('canvasElement')
+
+  canvasElement.style.background = "#f3f3f3";
 
 	var canvas = document.createElement("canvas");
 		canvas.width = 800;
     canvas.height = 400;
-    document.body.appendChild(canvas);
+
+    canvasElement.appendChild(canvas);
 	var ctx = canvas.getContext("2d");
 
 
@@ -85,6 +86,7 @@ window.onload = function() {
 	//init(alfa)
 
 	setInterval(function () {
+
 		t = t + dt;
 		// reduccion del movimiento por friccion
 
@@ -94,8 +96,6 @@ window.onload = function() {
 		Dalfa = DArc / (long_cuerda / 1000);
 		alfa = alfa - Dalfa;
 
-		f1 = mass*Math.sin(alfa)/10;
-		console.log("F2 " +mass*Math.cos(alfa));
 		init(alfa)
 		// init()
 
