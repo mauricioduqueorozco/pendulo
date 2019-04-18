@@ -1,12 +1,13 @@
 var PxPorCm = 50,
+		height_canvas = 400,
 		Xo = 0,
 		Yo = 0,
-		alfa = 40 * Math.PI /180,
+		alfa = 60 * Math.PI /180,
 		atg = 0,
 		DArc = 0,
 		Dalfa = 0,
 		vtg = 0,
-		x = 200,
+		x = 0,
 		y = 0,
 		dt = 0.005,
 		c =0,
@@ -15,7 +16,7 @@ var PxPorCm = 50,
 		long_cuerda = 300, // metros longitud de pendulo
 		g = 9.8, // gravity m/s2x
 		mass = 0.1,
-		sample_time = 1; // Senconds
+		sample_time = 100; // Senconds
 
 window.onload = function() {
 	var canvasElement = document.getElementById('canvasElement')
@@ -23,16 +24,18 @@ window.onload = function() {
   canvasElement.style.background = "#f3f3f3";
 
 	var canvas = document.createElement("canvas");
-		canvas.width = 800;
-    canvas.height = 400;
+	canvas.width = canvasElement.clientWidth;
+	// canvas.height = canvasElement.clientHeight;
+	canvas.height = height_canvas;
 
-    canvasElement.appendChild(canvas);
+
+  canvasElement.appendChild(canvas);
 	var ctx = canvas.getContext("2d");
 
 
 	var init = function(alfa){
 		ctx.clearRect ( 0 , 0 , canvas.width, canvas.height );
-
+		x  = canvas.width /2;
 		var puntos_finales = line_Ang({
 										x1 : x,
 										y1 : y,
@@ -47,12 +50,14 @@ window.onload = function() {
 				centroY : puntos_finales.desp_Y + y,
 				radio : 10
 		},ctx);
+
 		linea({x1 : 0,
 					y1 : 0,
-					x2:  200,
+					x2:  400,
 					y2: 0 ,
 					color : 'black'
 		},ctx);
+
 		line_Ang({
 					x1 : puntos_finales.desp_X + x,
 					y1 : puntos_finales.desp_Y + y,
@@ -83,8 +88,6 @@ window.onload = function() {
 		},ctx);
 	}
 
-	//init(alfa)
-
 	setInterval(function () {
 
 		t = t + dt;
@@ -95,6 +98,8 @@ window.onload = function() {
 		DArc = vtg * dt;
 		Dalfa = DArc / (long_cuerda / 1000);
 		alfa = alfa - Dalfa;
+
+		document.getElementById("p1").innerHTML = "Angle alpha: "  + Math.round(alfa * 100) / 100;
 
 		init(alfa)
 		// init()
